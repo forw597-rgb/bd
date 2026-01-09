@@ -10,19 +10,23 @@
         rel="stylesheet">
 
     <style>
+        * {
+            box-sizing: border-box;
+        }
+
         body {
             margin: 0;
             min-height: 100vh;
             font-family: 'Poppins', sans-serif;
-            background: linear-gradient(120deg, #ff9a9e, #fad0c4, #ffd1dc);
-            background-size: 300% 300%;
-            animation: bgMove 10s ease infinite;
-            text-align: center;
-            padding: 30px;
-            overflow-x: hidden;
+            background: linear-gradient(120deg, #ff9a9e, #fad0c4, #ffd1dc, #fbc2eb);
+            background-size: 400% 400%;
+            animation: bgMove 12s ease infinite;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            overflow: hidden;
         }
 
-        /* Moving background */
         @keyframes bgMove {
             0% {
                 background-position: 0% 50%;
@@ -37,14 +41,76 @@
             }
         }
 
+        /* Floating emojis */
+        .float {
+            position: fixed;
+            bottom: -50px;
+            font-size: 28px;
+            animation: floatUp linear infinite;
+            pointer-events: none;
+        }
+
+        @keyframes floatUp {
+            from {
+                transform: translateY(0) translateX(0) rotate(0deg);
+                opacity: 1;
+            }
+
+            to {
+                transform: translateY(-110vh) translateX(120px) rotate(360deg);
+                opacity: 0;
+            }
+        }
+
+        /* Card */
+        .card {
+            background: rgba(255, 255, 255, 0.15);
+            backdrop-filter: blur(12px);
+            border-radius: 30px;
+            padding: 40px 30px;
+            max-width: 900px;
+            width: 90%;
+            text-align: center;
+            box-shadow: 0 20px 50px rgba(0, 0, 0, 0.3);
+            animation: cardIn 1.2s ease;
+        }
+
+        @keyframes cardIn {
+            from {
+                opacity: 0;
+                transform: scale(0.9) translateY(30px);
+            }
+
+            to {
+                opacity: 1;
+                transform: scale(1) translateY(0);
+            }
+        }
+
+        /* Button */
+        .music-btn {
+            padding: 12px 25px;
+            border-radius: 20px;
+            border: none;
+            background: rgba(255, 255, 255, 0.85);
+            font-size: 18px;
+            cursor: pointer;
+            margin-bottom: 15px;
+            transition: transform 0.2s ease;
+        }
+
+        .music-btn:hover {
+            transform: scale(1.05);
+        }
+
         /* Title */
         h1 {
             font-family: 'Great Vibes', cursive;
             color: white;
             font-size: 64px;
-            margin-bottom: 10px;
-            text-shadow: 0 0 25px rgba(255, 255, 255, 0.6);
-            animation: glow 2s infinite alternate;
+            margin: 0 0 10px;
+            text-shadow: 0 0 25px rgba(255, 255, 255, 0.7);
+            animation: glow 2s infinite alternate, wave 4s ease-in-out infinite;
         }
 
         @keyframes glow {
@@ -53,22 +119,26 @@
             }
 
             to {
-                text-shadow: 0 0 30px rgba(255, 255, 255, 0.9);
+                text-shadow: 0 0 35px rgba(255, 255, 255, 1);
             }
         }
 
-        /* Text */
-        p {
-            color: white;
-            font-size: 22px;
-            font-weight: 300;
-            line-height: 1.6;
+        @keyframes wave {
+
+            0%,
+            100% {
+                transform: rotate(0deg);
+            }
+
+            50% {
+                transform: rotate(1deg);
+            }
         }
 
         /* Cake */
         .cake {
             font-size: 70px;
-            margin: 15px 0;
+            margin: 10px 0 20px;
             animation: bounce 1.2s infinite;
         }
 
@@ -86,48 +156,33 @@
             }
         }
 
-        /* Floating cakes */
-        .floating-cake {
-            position: fixed;
-            bottom: -50px;
-            font-size: 28px;
-            animation: floatUp linear infinite;
-            opacity: 0.9;
-        }
-
-        @keyframes floatUp {
-            from {
-                transform: translateY(0) translateX(0);
-                opacity: 1;
-            }
-
-            to {
-                transform: translateY(-110vh) translateX(120px);
-                opacity: 0;
-            }
-        }
-
-        /* Photo gallery */
+        /* Photos */
         .photos {
             display: flex;
             justify-content: center;
             gap: 25px;
-            margin: 30px 0;
+            margin: 25px 0;
             flex-wrap: wrap;
         }
 
         .photos img {
             width: 260px;
             max-width: 90%;
-            border-radius: 20px;
-            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.3);
-            animation: photoIn 1.5s ease;
+            border-radius: 22px;
+            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.35);
+            animation: photoIn 1.4s ease;
+            transition: transform 0.4s ease, box-shadow 0.4s ease;
+        }
+
+        .photos img:hover {
+            transform: scale(1.08) rotate(1deg);
+            box-shadow: 0 25px 50px rgba(0, 0, 0, 0.45);
         }
 
         @keyframes photoIn {
             from {
                 opacity: 0;
-                transform: scale(0.8) translateY(20px);
+                transform: scale(0.8) translateY(30px);
             }
 
             to {
@@ -136,20 +191,32 @@
             }
         }
 
-        /* Fade in */
-        .content {
-            animation: fadeIn 2s ease;
+        /* Text */
+        p {
+            color: white;
+            font-size: 22px;
+            font-weight: 300;
+            line-height: 1.6;
+            margin-top: 15px;
         }
 
-        @keyframes fadeIn {
+        /* Sparkles */
+        .sparkle {
+            position: fixed;
+            font-size: 14px;
+            pointer-events: none;
+            animation: sparkle 2s linear forwards;
+        }
+
+        @keyframes sparkle {
             from {
-                opacity: 0;
-                transform: translateY(20px);
+                opacity: 1;
+                transform: translateY(0) scale(1);
             }
 
             to {
-                opacity: 1;
-                transform: translateY(0);
+                opacity: 0;
+                transform: translateY(-80px) scale(0);
             }
         }
     </style>
@@ -157,41 +224,11 @@
 
 <body>
 
-    <div class="content">
-        <h1>Happy Birthday the most beautiful girl in My World 🤍</h1>
+    <!-- Background Music -->
+    <audio id="bgMusic" loop>
+        <source src="Birthda.mp3" type="audio/mpeg">
+    </audio>
 
-        <div class="cake">🎂</div>
+    <div class="card">
 
-        <!-- YOUR PHOTOS -->
-        <div class="photos">
-            <img src="IMG_5002.jpg" alt="Memory 1">
-            <img src="IMG_5003.jpg" alt="Memory 2">
-        </div>
-
-        <p>
-            Every day with you is special, but today is extra special because it's your day.<br>
-            I wish you all the happiness you deserve and I'll be your Constant.<br>
-            I Love You so much Thae 😗
-        </p>
-    </div>
-
-    <script>
-        function createCake() {
-            const cake = document.createElement("div");
-            cake.className = "floating-cake";
-            cake.innerHTML = "🎂";
-            cake.style.left = Math.random() * 100 + "vw";
-            cake.style.animationDuration = (3 + Math.random() * 5) + "s";
-            document.body.appendChild(cake);
-
-            setTimeout(() => {
-                cake.remove();
-            }, 8000);
-        }
-
-        setInterval(createCake, 500);
-    </script>
-
-</body>
-
-</html>
+        <button c
