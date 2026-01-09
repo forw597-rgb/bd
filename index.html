@@ -1,0 +1,197 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Happy Birthday 🎂</title>
+
+    <!-- Beautiful Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Great+Vibes&family=Poppins:wght@300;400;600&display=swap"
+        rel="stylesheet">
+
+    <style>
+        body {
+            margin: 0;
+            min-height: 100vh;
+            font-family: 'Poppins', sans-serif;
+            background: linear-gradient(120deg, #ff9a9e, #fad0c4, #ffd1dc);
+            background-size: 300% 300%;
+            animation: bgMove 10s ease infinite;
+            text-align: center;
+            padding: 30px;
+            overflow-x: hidden;
+        }
+
+        /* Moving background */
+        @keyframes bgMove {
+            0% {
+                background-position: 0% 50%;
+            }
+
+            50% {
+                background-position: 100% 50%;
+            }
+
+            100% {
+                background-position: 0% 50%;
+            }
+        }
+
+        /* Title */
+        h1 {
+            font-family: 'Great Vibes', cursive;
+            color: white;
+            font-size: 64px;
+            margin-bottom: 10px;
+            text-shadow: 0 0 25px rgba(255, 255, 255, 0.6);
+            animation: glow 2s infinite alternate;
+        }
+
+        @keyframes glow {
+            from {
+                text-shadow: 0 0 10px rgba(255, 255, 255, 0.4);
+            }
+
+            to {
+                text-shadow: 0 0 30px rgba(255, 255, 255, 0.9);
+            }
+        }
+
+        /* Text */
+        p {
+            color: white;
+            font-size: 22px;
+            font-weight: 300;
+            line-height: 1.6;
+        }
+
+        /* Cake */
+        .cake {
+            font-size: 70px;
+            margin: 15px 0;
+            animation: bounce 1.2s infinite;
+        }
+
+        @keyframes bounce {
+            0% {
+                transform: translateY(0);
+            }
+
+            50% {
+                transform: translateY(-20px);
+            }
+
+            100% {
+                transform: translateY(0);
+            }
+        }
+
+        /* Floating cakes */
+        .floating-cake {
+            position: fixed;
+            bottom: -50px;
+            font-size: 28px;
+            animation: floatUp linear infinite;
+            opacity: 0.9;
+        }
+
+        @keyframes floatUp {
+            from {
+                transform: translateY(0) translateX(0);
+                opacity: 1;
+            }
+
+            to {
+                transform: translateY(-110vh) translateX(120px);
+                opacity: 0;
+            }
+        }
+
+        /* Photo gallery */
+        .photos {
+            display: flex;
+            justify-content: center;
+            gap: 25px;
+            margin: 30px 0;
+            flex-wrap: wrap;
+        }
+
+        .photos img {
+            width: 260px;
+            max-width: 90%;
+            border-radius: 20px;
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.3);
+            animation: photoIn 1.5s ease;
+        }
+
+        @keyframes photoIn {
+            from {
+                opacity: 0;
+                transform: scale(0.8) translateY(20px);
+            }
+
+            to {
+                opacity: 1;
+                transform: scale(1) translateY(0);
+            }
+        }
+
+        /* Fade in */
+        .content {
+            animation: fadeIn 2s ease;
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="content">
+        <h1>Happy Birthday the most beautiful girl in My World 🤍</h1>
+
+        <div class="cake">🎂</div>
+
+        <!-- YOUR PHOTOS -->
+        <div class="photos">
+            <img src="IMG_5002.jpg" alt="Memory 1">
+            <img src="IMG_5003.jpg" alt="Memory 2">
+        </div>
+
+        <p>
+            Every day with you is special, but today is extra special because it's your day.<br>
+            I wish you all the happiness you deserve and I'll be your Constant.<br>
+            I Love You so much Thae 😗
+        </p>
+    </div>
+
+    <script>
+        function createCake() {
+            const cake = document.createElement("div");
+            cake.className = "floating-cake";
+            cake.innerHTML = "🎂";
+            cake.style.left = Math.random() * 100 + "vw";
+            cake.style.animationDuration = (3 + Math.random() * 5) + "s";
+            document.body.appendChild(cake);
+
+            setTimeout(() => {
+                cake.remove();
+            }, 8000);
+        }
+
+        setInterval(createCake, 500);
+    </script>
+
+</body>
+
+</html>
